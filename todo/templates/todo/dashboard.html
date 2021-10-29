@@ -1,0 +1,29 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<h1>Dashbaord</h1>
+
+<a href="{% url 'create' %}">Create Todo</a>
+
+<hr>
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{% url 'todoView' todo.id %}">
+            {% if todo.important %}
+            <b>{{todo.title}}</b>
+            {% else %}
+            {{todo.title}}
+            {% endif %}
+        </a>
+
+        {% if todo.memo %}
+        <span> - {{todo.memo}}</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<h1>Dashbaord - Completed</h1>
+
+<a href="{% url 'create' %}">Create Todo</a>
+
+<hr>
+
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{% url 'todoView' todo.id %}">
+            {% if todo.important %}
+            <b>{{todo.title}}</b>
+            {% else %}
+            {{todo.title}}
+            {% endif %}
+        </a>
+
+        {% if todo.memo %}
+        <span> - {{todo.memo}}</span>
+        {% endif %}
+
+        <br>
+       Completed: {{ todo.dateCompleted | date:'M j Y H:i'}} 
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
